@@ -11,12 +11,22 @@ public class GameManager : MonoBehaviour
     {
         if(Instance == null)
         {
-            Instance = this;
             inputActions = new InputActions();
+            Instance = this;            
         }
            
         else
             return;
+    }
+
+    void OnEnable()
+    {
+        inputActions.OnFoot.Enable();
+    }
+
+    void OnDisable()
+    {
+        inputActions.OnFoot.Disable();
     }
     // Start is called before the first frame update
     void Start()
