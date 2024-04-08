@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         inputActions = GameManager.Instance.inputActions;
-        moveSpeed = 1500f;
         moveSpeed = 5000f;
     }
 
