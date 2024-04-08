@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private InputActions inputActions;
     private CharacterController characterController;
+    [SerializeField]
     private float moveSpeed;
     private Animator animator;
 
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         inputActions = GameManager.Instance.inputActions;
         moveSpeed = 1500f;
+        moveSpeed = 5000f;
     }
 
     // Update is called once per frame
