@@ -11,6 +11,8 @@ public class Gun : MonoBehaviour
     [SerializeField]
     [Range(1,10)]
     private int damage = 1;
+    [SerializeField]
+    private Transform firePoint;
     private float timer;
 
     private InputActions inputActions;
@@ -37,6 +39,12 @@ public class Gun : MonoBehaviour
 
     private void FireGun()
     {
-        Debug.DrawRay(transform.position,transform.forward * 100, Color.red, 2f);
+        Debug.DrawRay(firePoint.position,firePoint.forward * 100, Color.red, 2f);
+        Ray ray = new Ray(firePoint.position,firePoint.forward);
+        RaycastHit hitInfo;
+        if(Physics.Raycast(ray, out hitInfo, 100f))
+        {
+            Destroy(hitInfo.collider.gameObject);
+        }
     }
 }
