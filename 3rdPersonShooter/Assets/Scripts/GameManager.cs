@@ -16,22 +16,32 @@ public class GameManager : MonoBehaviour
         }
            
         else
-            return;
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void OnEnable()
     {
-        inputActions.OnFoot.Enable();
+        if(this == Instance)
+        {
+             inputActions.OnFoot.Enable();
+        }
+           
     }
 
     void OnDisable()
     {
-        inputActions.OnFoot.Disable();
+        if(this == Instance)
+        {
+            inputActions.OnFoot.Disable();
+        }
+            
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
