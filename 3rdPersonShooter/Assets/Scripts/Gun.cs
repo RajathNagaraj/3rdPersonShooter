@@ -13,6 +13,11 @@ public class Gun : MonoBehaviour
     private int damage = 1;
     [SerializeField]
     private Transform firePoint;
+    [SerializeField]
+    private ParticleSystem muzzleFlash;
+
+    [SerializeField]
+    private AudioSource fireSound;
     private float timer;
 
     private InputActions inputActions;
@@ -46,6 +51,10 @@ public class Gun : MonoBehaviour
         {
             // Destroy(hitInfo.collider.gameObject);
             // Debug.DrawRay(firePoint.position,firePoint.forward * 100, Color.red, 2f);
+            if(muzzleFlash != null)
+             muzzleFlash.Play();
+            if(fireSound != null)
+             fireSound.Play();
             var enemyHealth = hitInfo.collider.gameObject.GetComponent<Health>();
             if(enemyHealth != null)
                 enemyHealth.TakeDamage(damage);
