@@ -6,8 +6,8 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField]
-    [Range(0.5f,1.5f)]
-    private float fireRate = 1f;
+    [Range(0.1f,1.5f)]
+    private float fireRate = 0.3f;
     [SerializeField]
     [Range(1,10)]
     private int damage = 1;
