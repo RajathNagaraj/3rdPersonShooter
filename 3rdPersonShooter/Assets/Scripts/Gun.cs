@@ -39,12 +39,16 @@ public class Gun : MonoBehaviour
 
     private void FireGun()
     {
-        //Debug.DrawRay(firePoint.position,firePoint.forward * 100, Color.red, 2f);
+        
         Ray ray = new Ray(firePoint.position,firePoint.forward);
         RaycastHit hitInfo;
         if(Physics.Raycast(ray, out hitInfo, 100f))
         {
-            Destroy(hitInfo.collider.gameObject);
+            // Destroy(hitInfo.collider.gameObject);
+            // Debug.DrawRay(firePoint.position,firePoint.forward * 100, Color.red, 2f);
+            var enemyHealth = hitInfo.collider.gameObject.GetComponent<Health>();
+            if(enemyHealth != null)
+                enemyHealth.TakeDamage(damage);
         }
     }
 }

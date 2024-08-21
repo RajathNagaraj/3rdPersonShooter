@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
     private Animator animator;
-
+    [SerializeField]
+    private float turnSpeed = 5f;
 
     void Awake()
     {      
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         inputActions = GameManager.Instance.inputActions;
-        moveSpeed = 5000f;
+        moveSpeed = 400f;
     }
 
     // Update is called once per frame
@@ -32,5 +33,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(movementVector2D.x, 0, movementVector2D.y);
         characterController.SimpleMove(movement * moveSpeed * Time.deltaTime);
 
+
+        if(movement.magnitude > 0)
+        {
+            Quaternion newDirection = Quaternion.LookRotation(movement);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newDirection, Time.deltaTime * turnSpeed);
+        }
+       
     }
 }
