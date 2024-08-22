@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private float turnSpeed = 5f;
+    private Vector3 movement;
+    private Quaternion rotation;
 
     void Awake()
     {      
@@ -22,23 +24,40 @@ public class PlayerMovement : MonoBehaviour
     {
         inputActions = GameManager.Instance.inputActions;
         moveSpeed = 400f;
+        // rotation = Quaternion.LookRotation(transform.forward);
     }
 
     // Update is called once per frame
     void Update()
     {
         var movementVector2D =  inputActions.OnFoot.Move.ReadValue<Vector2>();
-        float animSpeed = movementVector2D.magnitude;
-        animator.SetFloat("Speed",animSpeed);
-        Vector3 movement = new Vector3(movementVector2D.x, 0, movementVector2D.y);
-        characterController.SimpleMove(movement * moveSpeed * Time.deltaTime);
+        var lookVector2D = inputActions.OnFoot.Look.ReadValue<Vector2>();
+        Move(movementVector2D, lookVector2D);
+        float animSpeed = movementVector2D.y;
+        animator.SetFloat("Speed",animSpeed);      
+    }
 
+    private void Move(Vector2 movementVector, Vector2 lookVector)
+    {
 
-        if(movement.magnitude > 0)
-        {
-            Quaternion newDirection = Quaternion.LookRotation(movement);
-            transform.rotation = Quaternion.Slerp(transform.rotation, newDirection, Time.deltaTime * turnSpeed);
-        }
+        movement = new Vector3(movementVector.x, 0, movementVector.y); 
        
+         if(lookVector.magnitude != 0)
+        {
+           transform.Rotate(Vector3.up,lookVector.x);            
+           rotation = Quaternion.LookRotation(transform.forward);          
+           /* Debug.Log("Transform's rotation" + transform.rotation);
+           Debug.Log("Angle rotation" + rotation);  */                                              
+        }
+
+
+        if(movementVector.magnitude != 0)
+        {  
+            movement = rotation * movement;         
+            characterController.SimpleMove(movement * moveSpeed * Time.deltaTime);                                            
+        }   
+
+        
+          
     }
 }
