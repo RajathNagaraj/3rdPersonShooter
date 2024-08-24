@@ -44,8 +44,8 @@ public class Gun : MonoBehaviour
 
     private void FireGun()
     {
-        
-        Ray ray = new Ray(firePoint.position,firePoint.forward);
+        Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
+        // Ray ray = new Ray(firePoint.position,firePoint.forward);
         RaycastHit hitInfo;
         if(Physics.Raycast(ray, out hitInfo, 100f))
         {

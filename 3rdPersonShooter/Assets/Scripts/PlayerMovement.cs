@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed;
     private Animator animator;
     [SerializeField]
-    private float turnSpeed = 5f;
+    private float turnSpeed = 150f;
     private Vector3 movement;
     private Quaternion rotation;
 
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         inputActions = GameManager.Instance.inputActions;
-        moveSpeed = 400f;
+        moveSpeed = 1400f;
         // rotation = Quaternion.LookRotation(transform.forward);
     }
 
@@ -33,8 +34,13 @@ public class PlayerMovement : MonoBehaviour
         var movementVector2D =  inputActions.OnFoot.Move.ReadValue<Vector2>();
         var lookVector2D = inputActions.OnFoot.Look.ReadValue<Vector2>();
         Move(movementVector2D, lookVector2D);
-        float animSpeed = movementVector2D.y;
-        animator.SetFloat("Speed",animSpeed);      
+        Animate(movementVector2D.y);
+         
+    }
+
+    private void Animate(float animSpeed)
+    {
+        animator.SetFloat("Speed",animSpeed);    
     }
 
     private void Move(Vector2 movementVector, Vector2 lookVector)
@@ -44,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
        
          if(lookVector.magnitude != 0)
         {
-           transform.Rotate(Vector3.up,lookVector.x);            
+           transform.Rotate(Vector3.up,lookVector.x * turnSpeed * Time.deltaTime);            
            rotation = Quaternion.LookRotation(transform.forward);          
            /* Debug.Log("Transform's rotation" + transform.rotation);
            Debug.Log("Angle rotation" + rotation);  */                                              
@@ -53,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(movementVector.magnitude != 0)
         {  
-            movement = rotation * movement;         
+            movement = rotation * movement;        
             characterController.SimpleMove(movement * moveSpeed * Time.deltaTime);                                            
         }   
 
