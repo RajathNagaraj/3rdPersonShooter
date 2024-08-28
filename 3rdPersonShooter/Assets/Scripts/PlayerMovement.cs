@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         inputActions = GameManager.Instance.inputActions;
-        moveSpeed = 1400f;
+        moveSpeed = 140f;
         // rotation = Quaternion.LookRotation(transform.forward);
     }
 

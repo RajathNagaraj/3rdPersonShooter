@@ -12,8 +12,6 @@ public class Gun : MonoBehaviour
     [Range(1,10)]
     private int damage = 1;
     [SerializeField]
-    private Transform firePoint;
-    [SerializeField]
     private ParticleSystem muzzleFlash;
 
     [SerializeField]
@@ -22,10 +20,13 @@ public class Gun : MonoBehaviour
 
     private InputActions inputActions;
 
+    private Camera mainCamera;
+
     // Start is called before the first frame update
     void Start()
     {
         inputActions = GameManager.Instance.inputActions;
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -44,12 +45,11 @@ public class Gun : MonoBehaviour
 
     private void FireGun()
     {
-        Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
+        Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f ,0.5f, 0));
         // Ray ray = new Ray(firePoint.position,firePoint.forward);
         RaycastHit hitInfo;
         if(Physics.Raycast(ray, out hitInfo, 100f))
         {
-            // Destroy(hitInfo.collider.gameObject);
             // Debug.DrawRay(firePoint.position,firePoint.forward * 100, Color.red, 2f);
             if(muzzleFlash != null)
              muzzleFlash.Play();
