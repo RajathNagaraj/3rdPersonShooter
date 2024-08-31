@@ -50,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
        
          if(lookVector.magnitude != 0)
         {
-           transform.Rotate(Vector3.up,lookVector.x * turnSpeed * Time.deltaTime);            
+           transform.Rotate(Vector3.up,lookVector.x * turnSpeed * Time.deltaTime);    
+        //    transform.Rotate(Vector3.left,lookVector.y * turnSpeed * Time.deltaTime);         
            rotation = Quaternion.LookRotation(transform.forward);          
            /* Debug.Log("Transform's rotation" + transform.rotation);
            Debug.Log("Angle rotation" + rotation);  */                                              
