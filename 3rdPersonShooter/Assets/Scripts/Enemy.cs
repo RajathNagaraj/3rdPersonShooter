@@ -7,6 +7,9 @@ public class Enemy : MonoBehaviour
 {
     private AggroDetection aggroDetection;
     private Health healthTarget;
+    private float attackTimer;
+    [SerializeField]
+    private float attackRefreshRate = 1.5f;
 
     private void Awake() 
     {
@@ -28,6 +31,22 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(healthTarget != null)
+        {
+            attackTimer += Time.deltaTime;
+            if(CanAttack())
+                Attack();
+        }
+    }
+
+    private bool CanAttack()
+    {
+        return attackTimer >= attackRefreshRate;
+    }
+
+    private void Attack()
+    {
+        attackTimer = 0;
+        healthTarget.TakeDamage(1);
     }
 }

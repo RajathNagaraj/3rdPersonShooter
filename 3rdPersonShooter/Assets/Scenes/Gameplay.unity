@@ -2496,7 +2496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633529071}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10307873, y: -0.017639073, z: 0.0018282408, w: 0.9945151}
+  m_LocalRotation: {x: 0.1030787, y: -0.017639043, z: 0.0018282376, w: 0.9945151}
   m_LocalPosition: {x: -0.3, y: 3.21, z: 22.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3373,7 +3373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853553266}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10307873, y: -0.017639073, z: 0.0018282408, w: 0.9945151}
+  m_LocalRotation: {x: 0.1030787, y: -0.017639043, z: 0.0018282376, w: 0.9945151}
   m_LocalPosition: {x: -0.3, y: 3.21, z: 22.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4387,6 +4387,7 @@ GameObject:
   - component: {fileID: 1328856673}
   - component: {fileID: 1328856674}
   - component: {fileID: 1328856675}
+  - component: {fileID: 1328856676}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4562,6 +4563,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1328856676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328856670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3232b9f3af6584f814053a63a1a724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 5
+  currentHealth: 0
 --- !u!1001 &1331237796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6025,6 +6040,7 @@ GameObject:
   - component: {fileID: 1817269605}
   - component: {fileID: 1817269607}
   - component: {fileID: 1817269606}
+  - component: {fileID: 1817269608}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -6152,6 +6168,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f64e6d04410f344d9fcda8a2bb9adc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1817269608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817269600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fdd8b174ccf55f41814d3ffbe99a2c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRefreshRate: 1.5
 --- !u!4 &1822658118 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d80c7433031fdee44bf3910c4b046ce7, type: 3}
