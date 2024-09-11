@@ -17,9 +17,9 @@ public class Enemy : MonoBehaviour
         aggroDetection.OnAggro += PlayerDetected;
     }
 
-    private void PlayerDetected(Transform transform)
+    private void PlayerDetected(Transform player)
     {
-       Health health = transform.GetComponent<Health>();
+       Health health = player.GetComponent<Health>();
        if(health != null)
        {
             healthTarget = health;

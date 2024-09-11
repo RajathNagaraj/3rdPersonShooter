@@ -21,5 +21,6 @@ public class CameraController : MonoBehaviour
     {
         var lookVector = inputActions.OnFoot.Look.ReadValue<Vector2>();
         composer.m_TrackedObjectOffset.y += (lookVector.y * turnDampener);
+        composer.m_TrackedObjectOffset.y = Mathf.Clamp(composer.m_TrackedObjectOffset.y, -10, 10);
     }
 }

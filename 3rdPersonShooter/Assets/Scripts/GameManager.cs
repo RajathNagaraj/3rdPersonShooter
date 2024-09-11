@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
         if(Instance == null)
         {
             inputActions = new InputActions();
+            Cursor.lockState = CursorLockMode.Locked;
             Instance = this;            
         }
            
